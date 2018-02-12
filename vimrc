@@ -15,6 +15,8 @@ if dein#load_state('/home/aia/.cache/dein')
   call dein#add('junegunn/fzf', {'build': './install --all' })
   call dein#add('junegunn/fzf.vim')
   call dein#add('octol/vim-cpp-enhanced-highlight')
+  call dein#add('rakr/vim-one')
+  call dein#add('reedes/vim-colors-pencil')
   call dein#add('sbdchd/neoformat')
   call dein#add('scrooloose/nerdtree')
   call dein#add('Shougo/deoplete.nvim')
@@ -158,7 +160,7 @@ set bg=light
 colo solarized
 
 let g:lightline = {
-  \'colorscheme': 'solarized',
+  \'colorscheme': 'one',
   \'active': {'left': [['paste'], ['readonly', 'filename', 'modified']]},
   \'separator': { 'left': '', 'right': '' },
   \'subseparator': { 'left': '', 'right': '' }
