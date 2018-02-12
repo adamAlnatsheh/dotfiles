@@ -14,7 +14,6 @@ if dein#load_state('/home/aia/.cache/dein')
   call dein#add('itchyny/lightline.vim')
   call dein#add('junegunn/fzf', {'build': './install --all' })
   call dein#add('junegunn/fzf.vim')
-  call dein#add('junegunn/seoul256.vim')
   call dein#add('octol/vim-cpp-enhanced-highlight')
   call dein#add('sbdchd/neoformat')
   call dein#add('scrooloose/nerdtree')
@@ -157,8 +156,6 @@ set incsearch
 set termguicolors
 set bg=light
 colo solarized
-" let g:seoul256_background=236
-" colo seoul256
 
 let g:lightline = {
   \'colorscheme': 'solarized',
