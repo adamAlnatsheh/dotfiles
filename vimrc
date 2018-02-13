@@ -10,13 +10,13 @@ if dein#load_state('/home/aia/.cache/dein')
   " Let dein manage dein
   call dein#add('/home/aia/.cache/dein/repos/github.com/Shougo/dein.vim')
 
+  call dein#add('drewtempelmeyer/palenight.vim')
   call dein#add('frankier/neovim-colors-solarized-truecolor-only')
   call dein#add('itchyny/lightline.vim')
   call dein#add('junegunn/fzf', {'build': './install --all' })
   call dein#add('junegunn/fzf.vim')
   call dein#add('octol/vim-cpp-enhanced-highlight')
   call dein#add('rakr/vim-one')
-  call dein#add('reedes/vim-colors-pencil')
   call dein#add('sbdchd/neoformat')
   call dein#add('scrooloose/nerdtree')
   call dein#add('Shougo/deoplete.nvim')
@@ -155,9 +155,8 @@ set incsearch
 
 " ----- appearance -----
 
-set termguicolors
-set bg=light
-colo solarized
+" set termguicolors
+colo palenight
 
 let g:lightline = {
   \'colorscheme': 'one',
