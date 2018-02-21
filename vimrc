@@ -10,16 +10,15 @@ if dein#load_state('/home/aia/.cache/dein')
   " Let dein manage dein
   call dein#add('/home/aia/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  call dein#add('drewtempelmeyer/palenight.vim')
   call dein#add('frankier/neovim-colors-solarized-truecolor-only')
   call dein#add('itchyny/lightline.vim')
   call dein#add('junegunn/fzf', {'build': './install --all' })
   call dein#add('junegunn/fzf.vim')
   call dein#add('octol/vim-cpp-enhanced-highlight')
-  call dein#add('rakr/vim-one')
   call dein#add('sbdchd/neoformat')
   call dein#add('scrooloose/nerdtree')
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('tpope/vim-fugitive')
   call dein#add('w0rp/ale')
   call dein#add('zchee/deoplete-jedi')
 
@@ -155,16 +154,20 @@ set incsearch
 
 " ----- appearance -----
 
-" set termguicolors
-colo palenight
+set termguicolors
+set bg=dark
+colo solarized
 
 let g:lightline = {
-  \'colorscheme': 'one',
-  \'active': {'left': [['paste'], ['readonly', 'filename', 'modified']]},
+  \'colorscheme': 'solarized',
+  \'active': {'left': [['paste'],
+  \                    ['gitbranch', 'readonly', 'filename', 'modified']]},
+  \'component_function': {
+  \  'gitbranch': 'fugitive#head'},
   \'separator': { 'left': '', 'right': '' },
   \'subseparator': { 'left': '', 'right': '' }
   \}
-"
+
 " ----- formatting and linting -----
 
 let g:neoformat_enabled_python=['yapf']

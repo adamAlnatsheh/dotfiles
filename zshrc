@@ -5,7 +5,7 @@ ZSH_THEME="aia1"
 DISABLE_AUTO_UPDATE="true"
 
 # ENABLE_CORRECTION="true"
-plugins=(zsh-syntax-highlighting)
+plugins=(tmux, zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # ssh
