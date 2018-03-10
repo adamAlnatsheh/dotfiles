@@ -10,10 +10,11 @@ if dein#load_state('/home/aia/.cache/dein')
   " Let dein manage dein
   call dein#add('/home/aia/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  call dein#add('frankier/neovim-colors-solarized-truecolor-only')
+  call dein#add('icymind/NeoSolarized')
   call dein#add('itchyny/lightline.vim')
   call dein#add('junegunn/fzf', {'build': './install --all' })
   call dein#add('junegunn/fzf.vim')
+  call dein#add('morhetz/gruvbox')
   call dein#add('octol/vim-cpp-enhanced-highlight')
   call dein#add('sbdchd/neoformat')
   call dein#add('scrooloose/nerdtree')
@@ -67,6 +68,7 @@ set textwidth=79
 set linebreak
 set colorcolumn=80
 set cursorline
+set lazyredraw
 set scrolloff=8
 set laststatus=2
 set list lcs=trail:·
@@ -96,6 +98,7 @@ tnoremap <esc> <c-\><c-n>
 " nerdtree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
+let g:NERDTreeWinSize = 30
 
 
 " ----- indentation -----
@@ -156,10 +159,10 @@ set incsearch
 
 set termguicolors
 set bg=dark
-colo solarized
+colo NeoSolarized
 
 let g:lightline = {
-  \'colorscheme': 'solarized',
+  \'colorscheme': 'one',
   \'active': {'left': [['paste'],
   \                    ['gitbranch', 'readonly', 'filename', 'modified']]},
   \'component_function': {
@@ -181,10 +184,8 @@ let g:neoformat_c_clangformat = {
     \ AllowShortIfStatementsOnASingleLine: false,
     \ AllowShortLoopsOnASingleLine: false,
     \ BasedOnStyle: Google,
-    \ BreakBeforeBraces: Allman,
-    \ ColumnLimit: 80
-  \ }"'],
-  \'stdin': 1
+    \ TabWidth: 2
+  \ }"']
 \}
 
 let g:neoformat_cpp_clangformat = {
@@ -194,16 +195,15 @@ let g:neoformat_cpp_clangformat = {
     \ AllowShortIfStatementsOnASingleLine: false,
     \ AllowShortLoopsOnASingleLine: false,
     \ BasedOnStyle: Google,
-    \ BreakBeforeBraces: Allman,
-    \ ColumnLimit: 80
-  \ }"'],
-  \'stdin': 1
+    \ TabWidth: 2,
+  \ }"']
 \}
 
 
 augroup fmt
     autocmd!
     autocmd BufWritePre * Neoformat
+    autocmd BufWritePre *.py :call ale#Lint()
 augroup END
 
 let g:ale_lint_on_text_changed='never'

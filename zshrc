@@ -24,7 +24,6 @@ export KEYTIMEOUT=10
 # time for my aliases...
 alias cl='clear'
 alias h='cd $HOME'
-alias home='cd $HOME'
 alias ga='git add -A'
 alias gbl='git blame'
 alias gbr='git branch'
