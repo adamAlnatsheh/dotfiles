@@ -2,39 +2,28 @@ if &compatible
   set nocompatible
 endif
 
-set runtimepath+=/home/aia/.cache/dein/repos/github.com/Shougo/dein.vim
+call plug#begin('~/.local/share/nvim/plugged')
 
-if dein#load_state('/home/aia/.cache/dein')
-  call dein#begin('/home/aia/.cache/dein')
+Plug 'icymind/NeoSolarized'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', {'build': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'sbdchd/neoformat'
+Plug 'scrooloose/nerdtree'
+Plug 'Shougo/deoplete.nvim'
+Plug 'tpope/vim-fugitive'
+Plug 'w0rp/ale'
+Plug 'zchee/deoplete-jedi'
+Plug 'liuchengxu/space-vim-dark'
 
-  " Let dein manage dein
-  call dein#add('/home/aia/.cache/dein/repos/github.com/Shougo/dein.vim')
+call plug#end()
 
-  call dein#add('icymind/NeoSolarized')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('junegunn/fzf', {'build': './install --all' })
-  call dein#add('junegunn/fzf.vim')
-  call dein#add('morhetz/gruvbox')
-  call dein#add('octol/vim-cpp-enhanced-highlight')
-  call dein#add('sbdchd/neoformat')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('w0rp/ale')
-  call dein#add('zchee/deoplete-jedi')
 
-  call dein#end()
-  call dein#save_state()
-endif
+" ----- Editing files and buffers -----
 
 filetype plugin indent on
 syntax enable
-
-" if dein#check_install()
-"   call dein#install()
-" endif
-
-" ----- Editing files and buffers -----
 
 set clipboard=unnamedplus
 
@@ -114,7 +103,7 @@ set shiftwidth=2
 au BufRead,BufNewFile *.py set ts=4 sts=4 sw=4
 
 autocmd FileType make setlocal nolist noexpandtab
-
+autocmd FileType cmake setlocal nolist noexpandtab
 autocmd FileType dockerfile setlocal nolist noexpandtab
 
 autocmd BufNewFile,Bufread *.s set ft=asm
@@ -159,7 +148,8 @@ set incsearch
 
 set termguicolors
 set bg=dark
-colo NeoSolarized
+let g:gruvbox_bold=0
+colo space-vim-dark
 
 let g:lightline = {
   \'colorscheme': 'one',
