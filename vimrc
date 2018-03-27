@@ -4,10 +4,11 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'icymind/NeoSolarized'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'build': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
@@ -15,6 +16,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi'
+
 Plug 'liuchengxu/space-vim-dark'
 
 call plug#end()
@@ -53,8 +55,8 @@ set visualbell
 
 set number
 set showcmd
-set textwidth=79
 set linebreak
+set textwidth=79
 set colorcolumn=80
 set cursorline
 set lazyredraw
@@ -146,13 +148,12 @@ set incsearch
 
 " ----- appearance -----
 
-set termguicolors
 set bg=dark
 let g:gruvbox_bold=0
-colo space-vim-dark
+colo palenight
 
 let g:lightline = {
-  \'colorscheme': 'one',
+  \'colorscheme': 'seoul256',
   \'active': {'left': [['paste'],
   \                    ['gitbranch', 'readonly', 'filename', 'modified']]},
   \'component_function': {
