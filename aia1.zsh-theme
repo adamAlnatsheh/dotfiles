@@ -14,8 +14,8 @@ function get_pwd(){
 }
 
 PROMPT='%{$fg_bold[red]%}$(get_pwd)%{$reset_color%} \
-%{$fg[gray]%}$(git_prompt_info)%{$reset_color%} \
-%{$fg_bold[white]%}» %{$reset_color%} '
+%{$fg[white]%}$(git_prompt_info)%{$reset_color%} \
+%{$fg_bold[black]%}»%{$reset_color%} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]"

@@ -9,6 +9,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'build': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/seoul256.vim'
+Plug 'liuchengxu/space-vim-dark'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
@@ -17,7 +18,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi'
 
-Plug 'liuchengxu/space-vim-dark'
 
 call plug#end()
 
@@ -149,8 +149,7 @@ set incsearch
 " ----- appearance -----
 
 set bg=dark
-let g:gruvbox_bold=0
-colo palenight
+colo seoul256
 
 let g:lightline = {
   \'colorscheme': 'seoul256',
