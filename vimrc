@@ -15,6 +15,7 @@ Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'tweekmonster/deoplete-clang2'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi'
 
