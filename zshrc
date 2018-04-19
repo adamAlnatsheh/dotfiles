@@ -24,11 +24,10 @@ export KEYTIMEOUT=10
 # time for my aliases...
 alias cl='clear'
 alias h='cd $HOME'
-alias ga='git add -A'
+alias ga='git add'
 alias gbl='git blame'
 alias gbr='git branch'
 alias gc='git commit'
-alias gca='git commit -am'
 alias gcm='git commit -m'
 alias gco='git checkout'
 alias gd='git diff'
@@ -37,6 +36,7 @@ alias gl='git log'
 alias gm='git merge'
 alias gpl='git pull'
 alias gr='git rebase'
+alias gres='git reset'
 alias gps='git push'
 alias gs='git status'
 alias gsa='git stash apply'
@@ -46,3 +46,6 @@ alias gsp='git stash pop'
 alias sa='source activate'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# OPAM configuration
+. /home/aia/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
