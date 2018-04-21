@@ -4,7 +4,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'dracula/vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'build': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -17,7 +17,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tweekmonster/deoplete-clang2'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi'
-
 
 call plug#end()
 
@@ -148,8 +147,9 @@ set incsearch
 
 " ----- appearance -----
 
-set bg=dark
-colo seoul256
+let g:dracula_bold=0
+let g:dracula_italic=0
+colo dracula
 
 let g:lightline = {
   \'colorscheme': 'seoul256',
