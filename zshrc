@@ -24,6 +24,7 @@ export KEYTIMEOUT=10
 # time for my aliases...
 alias cl='clear'
 alias h='cd $HOME'
+
 alias ga='git add'
 alias gbl='git blame'
 alias gbr='git branch'
@@ -44,6 +45,10 @@ alias gst='git stash'
 alias gsp='git stash pop'
 
 alias sa='source activate'
+
+alias vi='nvim'
+alias vim='nvim'
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -4,17 +4,19 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'dracula/vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'build': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/seoul256.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-fugitive'
-Plug 'tweekmonster/deoplete-clang2'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi'
 
@@ -147,6 +149,7 @@ set incsearch
 
 " ----- appearance -----
 
+set termguicolors
 let g:dracula_bold=0
 let g:dracula_italic=0
 colo dracula
@@ -214,12 +217,24 @@ let g:ale_linters = {
 \}
 
 
-" ----- deoplete -----
+" ----- LSP -----
 
 let g:deoplete#enable_at_startup=1
 let g:deoplete#enable_smart_case=1
 
 " use TAB to manually autocomplete with deoplete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+let g:LanguageClient_serverCommands = {
+      \ 'cpp': ['clangd'],
+      \ 'python': ['pyls', '-v']
+      \ }
+
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_trace = 'verbose'
+
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 
