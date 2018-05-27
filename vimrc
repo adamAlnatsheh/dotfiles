@@ -139,6 +139,7 @@ autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
+let $FZF_DEFAULT_OPTS .= ' --no-height'
 
 " ----- searching -----
 
@@ -196,7 +197,7 @@ let g:neoformat_cpp_clangformat = {
 augroup fmt
     autocmd!
     autocmd BufWritePre * Neoformat
-    autocmd BufWritePre *.py :call ale#Lint()
+    autocmd BufWritePre * :call ale#Lint()
 augroup END
 
 let g:ale_lint_on_text_changed='never'
@@ -205,7 +206,7 @@ let g:ale_echo_cursor=0
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-" let g:ale_open_list=1
+let g:ale_open_list=1
 
 let g:ale_sign_error = '>'
 let g:ale_sign_warning = '-'
@@ -217,17 +218,18 @@ let g:ale_linters = {
 \}
 
 
-" ----- LSP -----
+" ----- autocomplete and LSP -----
 
 let g:deoplete#enable_at_startup=1
-let g:deoplete#enable_smart_case=1
+" let g:deoplete#enable_smart_case=1
 
 " use TAB to manually autocomplete with deoplete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 
 let g:LanguageClient_serverCommands = {
       \ 'cpp': ['clangd'],
-      \ 'python': ['pyls', '-v']
+      \ 'python': []
       \ }
 
 let g:LanguageClient_autoStart = 1
@@ -236,5 +238,3 @@ let g:LanguageClient_trace = 'verbose'
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-
