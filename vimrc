@@ -8,7 +8,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'dracula/vim'
+Plug 'icymind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'build': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -50,6 +50,10 @@ set history=1000
 set undolevels=1000
 
 set visualbell
+
+set wildmenu
+set wildmode=longest:list,full
+
 
 
 " ----- window -----
@@ -151,9 +155,7 @@ set incsearch
 " ----- appearance -----
 
 set termguicolors
-let g:dracula_bold=0
-let g:dracula_italic=0
-colo dracula
+colo NeoSolarized
 
 let g:lightline = {
   \'colorscheme': 'seoul256',
@@ -164,6 +166,7 @@ let g:lightline = {
   \'separator': { 'left': '', 'right': '' },
   \'subseparator': { 'left': '', 'right': '' }
   \}
+
 
 " ----- formatting and linting -----
 
@@ -228,6 +231,7 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 
 let g:LanguageClient_serverCommands = {
+      \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'python': []
       \ }
