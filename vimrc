@@ -8,6 +8,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'icymind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'build': './install --all' }
@@ -109,6 +110,8 @@ set shiftwidth=2
 
 au BufRead,BufNewFile *.py set ts=4 sts=4 sw=4
 
+
+autocmd FileType go set nolist noexpandtab
 autocmd FileType make setlocal nolist noexpandtab
 autocmd FileType cmake setlocal nolist noexpandtab
 autocmd FileType dockerfile setlocal nolist noexpandtab
@@ -170,9 +173,10 @@ let g:lightline = {
 
 " ----- formatting and linting -----
 
-let g:neoformat_enabled_python=['yapf']
 let g:neoformat_enabled_c=['clangformat']
 let g:neoformat_enabled_cpp=['clangformat']
+let g:neoformat_enabled_go=[]
+let g:neoformat_enabled_python=['yapf']
 
 let g:neoformat_c_clangformat = {
   \'exe': 'clang-format',
@@ -215,10 +219,20 @@ let g:ale_sign_error = '>'
 let g:ale_sign_warning = '-'
 
 let g:ale_linters = {
-  \'python': ['flake8'],
   \'c': [],
-  \'cpp': []
+  \'cpp': [],
+  \'go': [],
+  \'python': ['flake8']
 \}
+
+" vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls=1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_metalinter_autosave = 1
 
 
 " ----- autocomplete and LSP -----

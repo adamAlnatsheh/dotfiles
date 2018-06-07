@@ -52,5 +52,4 @@ alias vim='nvim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# OPAM configuration
-. /home/aia/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+export PATH=$PATH:/usr/local/go/bin
