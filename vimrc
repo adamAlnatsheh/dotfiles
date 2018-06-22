@@ -19,6 +19,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-jedi'
 
 call plug#end()
@@ -52,18 +53,14 @@ set undolevels=1000
 
 set visualbell
 
-set wildmenu
-set wildmode=longest:list,full
-
-
 
 " ----- window -----
 
 set number
 set showcmd
 set linebreak
-set textwidth=79
-set colorcolumn=80
+set textwidth=80
+set colorcolumn=81
 set cursorline
 set lazyredraw
 set scrolloff=8
@@ -111,10 +108,10 @@ set shiftwidth=2
 au BufRead,BufNewFile *.py set ts=4 sts=4 sw=4
 
 
-autocmd FileType go set nolist noexpandtab
-autocmd FileType make setlocal nolist noexpandtab
-autocmd FileType cmake setlocal nolist noexpandtab
+autocmd FileType cmake setlocal ts=4 sts=4 sw=4
 autocmd FileType dockerfile setlocal nolist noexpandtab
+autocmd FileType go setlocal nolist noexpandtab
+autocmd FileType make setlocal nolist noexpandtab
 
 autocmd BufNewFile,Bufread *.s set ft=asm
 autocmd FileType asm setlocal nolist noexpandtab
@@ -240,13 +237,17 @@ let g:go_metalinter_autosave = 1
 let g:deoplete#enable_at_startup=1
 " let g:deoplete#enable_smart_case=1
 
+
 " use TAB to manually autocomplete with deoplete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 
+let g:deoplete#sources#go#gocode_binary = '/home/aia/go/bin/gocode'
+
 let g:LanguageClient_serverCommands = {
       \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
+      \ 'go': [],
       \ 'python': []
       \ }
 
