@@ -4,6 +4,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'airblade/vim-gitgutter'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -13,10 +14,12 @@ Plug 'icymind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'build': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
@@ -248,7 +251,7 @@ let g:LanguageClient_serverCommands = {
       \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'go': [],
-      \ 'python': []
+      \ 'python': ['pyls']
       \ }
 
 let g:LanguageClient_autoStart = 1
