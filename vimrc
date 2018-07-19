@@ -9,12 +9,10 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'icymind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'build': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/seoul256.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
@@ -22,7 +20,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-jedi'
 
 call plug#end()
@@ -175,7 +172,6 @@ let g:lightline = {
 
 let g:neoformat_enabled_c=['clangformat']
 let g:neoformat_enabled_cpp=['clangformat']
-let g:neoformat_enabled_go=[]
 let g:neoformat_enabled_python=['yapf']
 
 let g:neoformat_c_clangformat = {
@@ -221,18 +217,8 @@ let g:ale_sign_warning = '-'
 let g:ale_linters = {
   \'c': [],
   \'cpp': [],
-  \'go': [],
   \'python': ['flake8']
 \}
-
-" vim-go
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls=1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_metalinter_autosave = 1
 
 
 " ----- autocomplete and LSP -----
@@ -245,16 +231,14 @@ let g:deoplete#enable_at_startup=1
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 
-let g:deoplete#sources#go#gocode_binary = '/home/aia/go/bin/gocode'
-
 let g:LanguageClient_serverCommands = {
       \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
-      \ 'go': [],
       \ 'python': ['pyls']
       \ }
 
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_trace = 'verbose'
 
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
