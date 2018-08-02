@@ -4,28 +4,25 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'airblade/vim-gitgutter'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
 Plug 'icymind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', {'build': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi'
 
 call plug#end()
 
 
-" ----- Editing files and buffers -----
+" ----- window and editing -----
 
 filetype plugin indent on
 syntax enable
@@ -53,15 +50,12 @@ set undolevels=1000
 
 set visualbell
 
-
-" ----- window -----
-
-set number
+" set number
 set showcmd
 set linebreak
 set textwidth=80
-set colorcolumn=81
-set cursorline
+" set colorcolumn=81
+" set cursorline
 set lazyredraw
 set scrolloff=8
 set laststatus=2
@@ -119,15 +113,12 @@ autocmd FileType asm setlocal nolist noexpandtab
 
 " ----- fzf -----
 
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+" nmap <leader><tab> <plug>(fzf-maps-n)
+" xmap <leader><tab> <plug>(fzf-maps-x)
+" omap <leader><tab> <plug>(fzf-maps-o)
 
 nnoremap <silent> ,t :Files<CR>
 nnoremap <silent> ,b :Buffers<cr>
-nnoremap <silent> ,r :Tags<cr>
-
-let g:fzf_tags_command = 'ctags -R'
 
 function! s:fzf_statusline()
   " Override statusline as you like
@@ -145,6 +136,7 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 
 let $FZF_DEFAULT_OPTS .= ' --no-height'
 
+
 " ----- searching -----
 
 set ignorecase
@@ -156,15 +148,12 @@ set incsearch
 
 set termguicolors
 colo NeoSolarized
+set bg=dark
 
 let g:lightline = {
-  \'colorscheme': 'seoul256',
+  \'colorscheme': 'landscape',
   \'active': {'left': [['paste'],
-  \                    ['gitbranch', 'readonly', 'filename', 'modified']]},
-  \'component_function': {
-  \  'gitbranch': 'fugitive#head'},
-  \'separator': { 'left': '', 'right': '' },
-  \'subseparator': { 'left': '', 'right': '' }
+  \                    ['readonly', 'filename', 'modified']]}
   \}
 
 

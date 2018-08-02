@@ -5,23 +5,16 @@ ZSH_THEME="aia1"
 DISABLE_AUTO_UPDATE="true"
 
 # ENABLE_CORRECTION="true"
-plugins=(tmux, zsh-syntax-highlighting)
+plugins=(tmux, extract)
 source $ZSH/oh-my-zsh.sh
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-
-# ----- my turn... -----
-
-# added by Miniconda3 installer
 export PATH="/home/aia/miniconda3/bin:$PATH"
 
 export EDITOR=nvim
 bindkey -v
 export KEYTIMEOUT=10
 
-# time for my aliases...
 alias cl='clear'
 alias h='cd $HOME'
 
@@ -32,10 +25,10 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias gco='git checkout'
 alias gd='git diff'
-alias gf='git fetch'
+alias gf='git fetch --prune'
 alias gl='git log'
 alias gm='git merge'
-alias gpl='git pull'
+alias gpl='git pull --prune'
 alias gr='git rebase'
 alias gres='git reset'
 alias gps='git push'
@@ -46,10 +39,17 @@ alias gsp='git stash pop'
 
 alias sa='source activate'
 
-alias vi='nvim'
-alias vim='nvim'
-
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH=$PATH:/usr/local/go/bin
+function up() {
+  if [ $# -eq 0 ]
+  then
+    times=1
+  else
+    times=$1
+  fi
+  while [ $times -gt 0 ]; do
+    cd ..
+    times=$(($times - 1))
+  done
+}
