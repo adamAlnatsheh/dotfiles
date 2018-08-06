@@ -148,7 +148,6 @@ set incsearch
 
 set termguicolors
 colo NeoSolarized
-set bg=dark
 
 let g:lightline = {
   \'colorscheme': 'landscape',
