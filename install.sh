@@ -3,13 +3,11 @@
 sudo apt update -y
 sudo apt install -y curl htop python3-pip tmux vim wget zsh
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 
 ln -nfs $HOME/dotfiles/zshrc $HOME/.zshrc
 ln -nfs $HOME/dotfiles/aia1.zsh-theme \
   $HOME/.oh-my-zsh/custom/themes/aia1.zsh-theme
-
-chsh -s $(which zsh)
 
 ln -nfs $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
@@ -18,6 +16,7 @@ sudo apt install -y clang-format
 curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
   > $HOME/Miniconda3-latest-Linux-x86_64.sh
 sh $HOME/Miniconda3-latest-Linux-x86_64.sh
+rm $HOME/Miniconda3-latest-Linux-x86_64.sh
 
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update
@@ -36,3 +35,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
 sudo dpkg -i ripgrep_0.8.1_amd64.deb
+rm ripgrep_0.8.1_amd64.deb
+
+chsh -s $(which zsh)
