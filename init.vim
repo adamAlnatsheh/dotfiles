@@ -12,6 +12,7 @@ Plug 'icymind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
@@ -146,8 +147,9 @@ set incsearch
 
 " ----- appearance -----
 
-set termguicolors
-colo NeoSolarized
+colo gruvbox
+let g:gruvbox_bold=0
+set bg=dark
 
 let g:lightline = {
   \'colorscheme': 'landscape',
