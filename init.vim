@@ -105,7 +105,6 @@ au BufRead,BufNewFile *.py set ts=4 sts=4 sw=4
 
 autocmd FileType cmake setlocal ts=4 sts=4 sw=4
 autocmd FileType dockerfile setlocal nolist noexpandtab
-autocmd FileType go setlocal nolist noexpandtab
 autocmd FileType make setlocal nolist noexpandtab
 
 autocmd BufNewFile,Bufread *.s set ft=asm
@@ -114,22 +113,8 @@ autocmd FileType asm setlocal nolist noexpandtab
 
 " ----- fzf -----
 
-" nmap <leader><tab> <plug>(fzf-maps-n)
-" xmap <leader><tab> <plug>(fzf-maps-x)
-" omap <leader><tab> <plug>(fzf-maps-o)
-
 nnoremap <silent> ,t :Files<CR>
 nnoremap <silent> ,b :Buffers<cr>
-
-function! s:fzf_statusline()
-  " Override statusline as you like
-  highlight fzf1 ctermfg=161 ctermbg=251
-  highlight fzf2 ctermfg=23 ctermbg=251
-  highlight fzf3 ctermfg=237 ctermbg=251
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-endfunction
-
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
