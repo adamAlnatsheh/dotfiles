@@ -8,9 +8,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'icymind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -55,8 +53,6 @@ set visualbell
 set showcmd
 set linebreak
 set textwidth=80
-" set colorcolumn=81
-" set cursorline
 set lazyredraw
 set scrolloff=8
 set laststatus=2
@@ -68,24 +64,24 @@ autocmd BufWritePre * %s/\s\+$//e
 set splitbelow
 set splitright
 
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
+nnoremap <M-h> <C-w>h
 
 " terminal
 command! -nargs=* T sp | te <args>
 command! -nargs=* VT vs | te <args>
 
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
-tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <M-j> <C-\><C-n><C-w>j
+tnoremap <M-k> <C-\><C-n><C-w>k
+tnoremap <M-l> <C-\><C-n><C-w>l
+tnoremap <M-h> <C-\><C-n><C-w>h
 autocmd BufWinEnter,WinEnter term://* startinsert
 tnoremap <esc> <c-\><c-n>
 
 " nerdtree
-map <C-n> :NERDTreeToggle<CR>
+map <M-n> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 let g:NERDTreeWinSize = 30
 

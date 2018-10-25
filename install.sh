@@ -1,7 +1,7 @@
 #!bin/sh
 
 sudo apt update -y
-sudo apt install -y curl htop python3-pip tmux vim wget zsh
+sudo apt install -y curl htop tmux vim wget zsh
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 
@@ -21,8 +21,8 @@ rm $HOME/Miniconda3-latest-Linux-x86_64.sh
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update
 sudo apt install neovim
-pip3 install neovim
-pip3 install --upgrade neovim
+pip install neovim
+pip install --upgrade neovim
 
 mkdir -p $HOME/.config/nvim
 ln -nfs $HOME/dotfiles/init.vim $HOME/.config/nvim/init.vim
