@@ -11,7 +11,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
@@ -21,7 +21,7 @@ Plug 'zchee/deoplete-jedi'
 call plug#end()
 
 
-" ----- window and editing -----
+" ----- window -----
 
 filetype plugin indent on
 syntax enable
@@ -35,28 +35,25 @@ set backspace=indent,eol,start
 set clipboard+=unnamedplus
 set fileformat=unix
 set hidden
+set history=1000
 set laststatus=2
+set lazyredraw
 set linebreak
+set list lcs=trail:·
 set noswapfile
 set nobackup
 " set nowb
+set scrolloff=8
 set showcmd
+set splitbelow
+set splitright
 set textwidth=80
 set title
-
-set history=1000
 set undolevels=1000
 set visualbell
 
-set lazyredraw
-set scrolloff=8
-set list lcs=trail:·
-
 " trim trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
-
-set splitbelow
-set splitright
 
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -105,8 +102,8 @@ autocmd FileType asm setlocal nolist noexpandtab
 " ----- searching -----
 
 set ignorecase
-set smartcase
 set incsearch
+set smartcase
 
 
 " ----- fzf -----
@@ -123,9 +120,7 @@ let $FZF_DEFAULT_OPTS .= ' --no-height'
 
 " ----- appearance -----
 
-colo gruvbox
-let g:gruvbox_bold=0
-set bg=dark
+colo jellybeans
 
 let g:lightline = {
   \'colorscheme': 'landscape',
@@ -165,7 +160,7 @@ let g:neoformat_cpp_clangformat = {
 
 augroup fmt
     autocmd!
-    autocmd BufWritePre * Neoformat
+    autocmd BufWritePre * :Neoformat
 augroup END
 
 let g:deoplete#enable_at_startup=1
@@ -187,5 +182,9 @@ let g:LanguageClient_trace = 'verbose'
 call deoplete#custom#option('auto_complete_delay', 5)
 call deoplete#custom#option('auto_refresh_delay', 12)
 
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+function LC_maps()
+  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+endfunction
+
+autocmd FileType c,cpp,python call LC_maps()

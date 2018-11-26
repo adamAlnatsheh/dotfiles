@@ -21,8 +21,8 @@ rm $HOME/Miniconda3-latest-Linux-x86_64.sh
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update
 sudo apt install neovim
-pip install neovim
-pip install --upgrade neovim
+pip install pynvim
+pip install --upgrade pynvim
 
 mkdir -p $HOME/.config/nvim
 ln -nfs $HOME/dotfiles/init.vim $HOME/.config/nvim/init.vim
