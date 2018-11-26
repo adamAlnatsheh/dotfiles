@@ -9,13 +9,13 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'w0rp/ale'
 Plug 'zchee/deoplete-jedi'
 
 call plug#end()
@@ -26,36 +26,30 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
-set clipboard=unnamedplus
-
 let mapleader=","
 nmap ; :
 :imap jj <Esc>
 
-
 set autoread
+set backspace=indent,eol,start
+set clipboard+=unnamedplus
+set fileformat=unix
 set hidden
-set title
+set laststatus=2
+set linebreak
 set noswapfile
 set nobackup
 " set nowb
-
-set backspace=indent,eol,start
-
-set fileformat=unix
+set showcmd
+set textwidth=80
+set title
 
 set history=1000
 set undolevels=1000
-
 set visualbell
 
-" set number
-set showcmd
-set linebreak
-set textwidth=80
 set lazyredraw
 set scrolloff=8
-set laststatus=2
 set list lcs=trail:·
 
 " trim trailing whitespace on save
@@ -64,24 +58,25 @@ autocmd BufWritePre * %s/\s\+$//e
 set splitbelow
 set splitright
 
-nnoremap <M-j> <C-w>j
-nnoremap <M-k> <C-w>k
-nnoremap <M-l> <C-w>l
-nnoremap <M-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
 
 " terminal
+:tmap jj <Esc>
 command! -nargs=* T sp | te <args>
 command! -nargs=* VT vs | te <args>
 
-tnoremap <M-j> <C-\><C-n><C-w>j
-tnoremap <M-k> <C-\><C-n><C-w>k
-tnoremap <M-l> <C-\><C-n><C-w>l
-tnoremap <M-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap <C-h> <C-\><C-n><C-w>h
 autocmd BufWinEnter,WinEnter term://* startinsert
 tnoremap <esc> <c-\><c-n>
 
 " nerdtree
-map <M-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 let g:NERDTreeWinSize = 30
 
@@ -96,8 +91,8 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
-au BufRead,BufNewFile *.py set ts=4 sts=4 sw=4
-
+autocmd FileType python setlocal tw=79 ts=4 sts=4 sw=4
+autocmd FileType c setlocal ts=8 sts=8 sw=8 nolist noexpandtab
 
 autocmd FileType cmake setlocal ts=4 sts=4 sw=4
 autocmd FileType dockerfile setlocal nolist noexpandtab
@@ -105,6 +100,13 @@ autocmd FileType make setlocal nolist noexpandtab
 
 autocmd BufNewFile,Bufread *.s set ft=asm
 autocmd FileType asm setlocal nolist noexpandtab
+
+
+" ----- searching -----
+
+set ignorecase
+set smartcase
+set incsearch
 
 
 " ----- fzf -----
@@ -117,13 +119,6 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 let $FZF_DEFAULT_OPTS .= ' --no-height'
-
-
-" ----- searching -----
-
-set ignorecase
-set smartcase
-set incsearch
 
 
 " ----- appearance -----
@@ -139,7 +134,7 @@ let g:lightline = {
   \}
 
 
-" ----- formatting and linting -----
+" ----- ide -----
 
 let g:neoformat_enabled_c=['clangformat']
 let g:neoformat_enabled_cpp=['clangformat']
@@ -168,32 +163,10 @@ let g:neoformat_cpp_clangformat = {
   \ }"']
 \}
 
-
 augroup fmt
     autocmd!
     autocmd BufWritePre * Neoformat
-    autocmd BufWritePre * :call ale#Lint()
 augroup END
-
-let g:ale_lint_on_text_changed='never'
-let g:ale_lint_on_enter=0
-let g:ale_echo_cursor=0
-
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list=1
-
-let g:ale_sign_error = '>'
-let g:ale_sign_warning = '-'
-
-let g:ale_linters = {
-  \'c': [],
-  \'cpp': [],
-  \'python': ['flake8']
-\}
-
-
-" ----- autocomplete and LSP -----
 
 let g:deoplete#enable_at_startup=1
 " let g:deoplete#enable_smart_case=1
@@ -210,9 +183,9 @@ let g:LanguageClient_serverCommands = {
       \ }
 
 let g:LanguageClient_autoStart = 1
-let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_trace = 'verbose'
+call deoplete#custom#option('auto_complete_delay', 5)
+call deoplete#custom#option('auto_refresh_delay', 12)
 
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
