@@ -1,7 +1,7 @@
 #!bin/sh
 
 sudo apt update -y
-sudo apt install -y curl htop tmux vim wget zsh
+sudo apt install -y cmake curl gcc g++ htop make ninja-build tmux vim wget zsh
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 
