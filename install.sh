@@ -11,7 +11,7 @@ ln -nfs $HOME/dotfiles/aia1.zsh-theme \
 
 ln -nfs $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
-sudo apt install -y clang-format
+sudo apt install -y clang-format clang-tools
 
 curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
   > $HOME/Miniconda3-latest-Linux-x86_64.sh
@@ -19,8 +19,8 @@ sh $HOME/Miniconda3-latest-Linux-x86_64.sh
 rm $HOME/Miniconda3-latest-Linux-x86_64.sh
 
 sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt update
-sudo apt install neovim
+sudo apt update -y
+sudo apt install -y neovim
 pip install pynvim
 pip install --upgrade pynvim
 
