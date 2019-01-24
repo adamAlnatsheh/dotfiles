@@ -1,15 +1,14 @@
-export ZSH=/home/aia/.oh-my-zsh
+export ZSH=/home/adam/.oh-my-zsh
 
-ZSH_THEME="aia1"
-
+ZSH_THEME="agnoster_newline"
+DEFAULT_USER=$USER
 DISABLE_AUTO_UPDATE="true"
 
 # ENABLE_CORRECTION="true"
 plugins=(tmux, extract)
 source $ZSH/oh-my-zsh.sh
 
-
-export PATH="/home/aia/miniconda3/bin:$PATH"
+export PATH="/home/adam/miniconda3/bin:$PATH"
 
 export EDITOR=nvim
 bindkey -v

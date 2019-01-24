@@ -8,6 +8,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'euclio/vim-markdown-composer', { 'do': 'cargo build --release' }
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -64,12 +65,13 @@ nnoremap <C-h> <C-w>h
 :tmap jj <Esc>
 command! -nargs=* T sp | te <args>
 command! -nargs=* VT vs | te <args>
+command! -nargs=* TT tabnew | te <args>
 
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 tnoremap <C-h> <C-\><C-n><C-w>h
-autocmd BufWinEnter,WinEnter term://* startinsert
+" autocmd BufWinEnter,WinEnter term://* startinsert
 tnoremap <esc> <c-\><c-n>
 
 " nerdtree
@@ -84,9 +86,9 @@ set autoindent
 set smartindent
 set expandtab
 " set smarttab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 autocmd FileType python setlocal tw=79 ts=4 sts=4 sw=4
 autocmd FileType c setlocal ts=8 sts=8 sw=8 nolist noexpandtab
@@ -97,6 +99,8 @@ autocmd FileType make setlocal nolist noexpandtab
 
 autocmd BufNewFile,Bufread *.s set ft=asm
 autocmd FileType asm setlocal nolist noexpandtab
+
+" autocmd FileType markdown setlocal spell spelllang=en_us
 
 
 " ----- searching -----
@@ -109,7 +113,7 @@ set smartcase
 " ----- fzf -----
 
 nnoremap <silent> ,t :Files<CR>
-nnoremap <silent> ,b :Buffers<cr>
+" nnoremap <silent> ,b :Buffers<CR>
 
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
@@ -133,58 +137,36 @@ let g:lightline = {
 
 let g:neoformat_enabled_c=['clangformat']
 let g:neoformat_enabled_cpp=['clangformat']
+" let g:neoformat_enabled_cmake=['cmakeformat']
+let g:neoformat_enabled_cmake=[]
 let g:neoformat_enabled_python=['yapf']
 let g:neoformat_enabled_yaml=[]
-
-let g:neoformat_c_clangformat = {
-  \'exe': 'clang-format',
-  \'args': ['-style="{
-    \ AllowShortFunctionsOnASingleLine: Empty,
-    \ AllowShortIfStatementsOnASingleLine: false,
-    \ AllowShortLoopsOnASingleLine: false,
-    \ BasedOnStyle: Google,
-    \ TabWidth: 2
-  \ }"']
-\}
-
-let g:neoformat_cpp_clangformat = {
-  \'exe': 'clang-format',
-  \'args': ['-style="{
-    \ AllowShortFunctionsOnASingleLine: Empty,
-    \ AllowShortIfStatementsOnASingleLine: false,
-    \ AllowShortLoopsOnASingleLine: false,
-    \ BasedOnStyle: Google,
-    \ TabWidth: 2,
-  \ }"']
-\}
 
 augroup fmt
     autocmd!
     autocmd BufWritePre * :Neoformat
 augroup END
 
-let g:deoplete#enable_at_startup=1
-" let g:deoplete#enable_smart_case=1
+function LC_init()
+  call deoplete#enable()
 
+  " use TAB to manually autocomplete with deoplete
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+  inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 
-" use TAB to manually autocomplete with deoplete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
+  let g:LanguageClient_serverCommands = {
+        \ 'c': ['clangd'],
+        \ 'cpp': ['clangd'],
+        \ 'python': ['pyls']
+        \ }
 
-let g:LanguageClient_serverCommands = {
-      \ 'c': ['clangd'],
-      \ 'cpp': ['clangd'],
-      \ 'python': ['pyls']
-      \ }
+  let g:LanguageClient_autoStart = 1
+  let g:LanguageClient_trace = 'verbose'
+  call deoplete#custom#option('auto_complete_delay', 5)
+  call deoplete#custom#option('auto_refresh_delay', 12)
 
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_trace = 'verbose'
-call deoplete#custom#option('auto_complete_delay', 5)
-call deoplete#custom#option('auto_refresh_delay', 12)
-
-function LC_maps()
   nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
   nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 endfunction
 
-autocmd FileType c,cpp,python call LC_maps()
+autocmd FileType c,python call LC_init()
