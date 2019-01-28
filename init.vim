@@ -97,6 +97,8 @@ autocmd FileType cmake setlocal ts=4 sts=4 sw=4
 autocmd FileType dockerfile setlocal nolist noexpandtab
 autocmd FileType make setlocal nolist noexpandtab
 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2
+
 autocmd BufNewFile,Bufread *.s set ft=asm
 autocmd FileType asm setlocal nolist noexpandtab
 
@@ -137,8 +139,7 @@ let g:lightline = {
 
 let g:neoformat_enabled_c=['clangformat']
 let g:neoformat_enabled_cpp=['clangformat']
-" let g:neoformat_enabled_cmake=['cmakeformat']
-let g:neoformat_enabled_cmake=[]
+let g:neoformat_enabled_cmake=['cmakeformat']
 let g:neoformat_enabled_python=['yapf']
 let g:neoformat_enabled_yaml=[]
 
