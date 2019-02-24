@@ -13,13 +13,12 @@ function get_pwd(){
   echo $prompt_short_dir
 }
 
-PROMPT='%{$FG[105]%}$(get_pwd)%{$reset_color%} \
+PROMPT='%{$fg[yellow]%}$(get_pwd)%{$reset_color%} \
 %{$fg[white]%}$(git_prompt_info)%{$reset_color%} \
-%{$FG[078]%}»%{$reset_color%} '
+%{$fg[green]%}»%{$reset_color%} '
 
-eval my_orange='$FG[214]'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]"
-ZSH_THEME_GIT_PROMPT_DIRTY="$my_orange*%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$FG[214]%}*%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""

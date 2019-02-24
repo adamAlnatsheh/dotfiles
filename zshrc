@@ -1,6 +1,6 @@
 export ZSH=/home/adam/.oh-my-zsh
 
-ZSH_THEME="agnoster_newline"
+ZSH_THEME="aia1"
 DEFAULT_USER=$USER
 DISABLE_AUTO_UPDATE="true"
 

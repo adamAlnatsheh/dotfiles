@@ -23,11 +23,12 @@ rm $HOME/Miniconda3-latest-Linux-x86_64.sh
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update -y
 sudo apt install -y neovim
-pip3 install pynvim
-pip3 install --upgrade pynvim
 
 mkdir -p $HOME/.config/nvim
 ln -nfs $HOME/dotfiles/init.vim $HOME/.config/nvim/init.vim
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

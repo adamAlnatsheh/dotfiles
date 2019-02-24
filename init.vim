@@ -4,20 +4,14 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'euclio/vim-markdown-composer', { 'do': 'cargo build --release' }
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
 
 call plug#end()
 
@@ -90,12 +84,12 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-autocmd FileType python setlocal tw=79 ts=4 sts=4 sw=4
 autocmd FileType c setlocal ts=8 sts=8 sw=8 nolist noexpandtab
+autocmd FileType python setlocal tw=79 ts=4 sts=4 sw=4
 
-autocmd FileType cmake setlocal ts=4 sts=4 sw=4
 autocmd FileType dockerfile setlocal nolist noexpandtab
 autocmd FileType make setlocal nolist noexpandtab
+autocmd FileType tf setlocal nolist noexpandtab ts=8 sts=8 sw=8
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 
@@ -115,7 +109,6 @@ set smartcase
 " ----- fzf -----
 
 nnoremap <silent> ,t :Files<CR>
-" nnoremap <silent> ,b :Buffers<CR>
 
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
@@ -140,34 +133,11 @@ let g:lightline = {
 let g:neoformat_enabled_c=['clangformat']
 let g:neoformat_enabled_cpp=['clangformat']
 let g:neoformat_enabled_cmake=['cmakeformat']
+let g:neoformat_enabled_terraform=['terraform']
 let g:neoformat_enabled_python=['yapf']
 let g:neoformat_enabled_yaml=[]
 
 augroup fmt
     autocmd!
-    autocmd BufWritePre * :Neoformat
+    autocmd BufWritePre * Neoformat
 augroup END
-
-function LC_init()
-  call deoplete#enable()
-
-  " use TAB to manually autocomplete with deoplete
-  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-  inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<tab>"
-
-  let g:LanguageClient_serverCommands = {
-        \ 'c': ['clangd'],
-        \ 'cpp': ['clangd'],
-        \ 'python': ['pyls']
-        \ }
-
-  let g:LanguageClient_autoStart = 1
-  let g:LanguageClient_trace = 'verbose'
-  call deoplete#custom#option('auto_complete_delay', 5)
-  call deoplete#custom#option('auto_refresh_delay', 12)
-
-  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-endfunction
-
-autocmd FileType c,python call LC_init()
