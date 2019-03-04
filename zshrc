@@ -1,6 +1,6 @@
 export ZSH=/home/adam/.oh-my-zsh
 
-ZSH_THEME="aia1"
+ZSH_THEME="adam1"
 DEFAULT_USER=$USER
 DISABLE_AUTO_UPDATE="true"
 
