@@ -1,7 +1,7 @@
 #!bin/sh
 
 sudo apt update -y
-sudo apt install -y cmake curl gcc g++ htop make ninja-build python3-pip tmux vim wget zsh
+sudo apt install -y cmake curl gcc g++ htop make ninja-build python3-pip tmux vim wget xclip zsh
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 
@@ -10,8 +10,8 @@ ln -nfs $HOME/dotfiles/adam1.zsh-theme \
   $HOME/.oh-my-zsh/custom/themes/adam1.zsh-theme
 ln -nfs $HOME/dotfiles/agnoster_newline.zsh-theme \
   $HOME/.oh-my-zsh/custom/themes/agnoster_newline.zsh-theme
-
 ln -nfs $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
+ln -fs $HOME/dotfiles/ideavimrc $HOME/.ideavimrc
 
 sudo apt install -y clang-format clang-tools
 
