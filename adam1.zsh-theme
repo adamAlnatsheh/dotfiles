@@ -33,13 +33,13 @@ function echo_root() {
 }
 
 
-PROMPT='%{$fg[green]%}$(echo_root)%{$reset_color%}\
+PROMPT='%{$fg[white]%}$(echo_root)%{$reset_color%}\
 %{$fg[yellow]%}$(echo_git_dir)%{$reset_color%} \
 %{$fg[white]%}$(git_prompt_info)%{$reset_color%} \
-%{$FG[105]%}»%{$reset_color%} '
+%{$fg[white]%}»%{$reset_color%} '
 
 
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$FG[214]%}*%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}*%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
