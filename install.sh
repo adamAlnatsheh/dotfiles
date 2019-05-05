@@ -8,8 +8,6 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 ln -nfs $HOME/dotfiles/zshrc $HOME/.zshrc
 ln -nfs $HOME/dotfiles/adam1.zsh-theme \
   $HOME/.oh-my-zsh/custom/themes/adam1.zsh-theme
-ln -nfs $HOME/dotfiles/agnoster_newline.zsh-theme \
-  $HOME/.oh-my-zsh/custom/themes/agnoster_newline.zsh-theme
 ln -nfs $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 ln -fs $HOME/dotfiles/ideavimrc $HOME/.ideavimrc
 

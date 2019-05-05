@@ -120,7 +120,6 @@ let g:lightline = {
 let g:neoformat_enabled_c=['clangformat']
 let g:neoformat_enabled_cpp=['clangformat']
 let g:neoformat_enabled_cmake=['cmakeformat']
-let g:neoformat_enabled_terraform=['terraform']
 let g:neoformat_enabled_python=['yapf']
 let g:neoformat_enabled_yaml=[]
 
