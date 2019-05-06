@@ -20,6 +20,7 @@ alias cl='clear'
 alias h='cd $HOME'
 
 alias ga='git add'
+alias gbl='git blame'
 alias gbr='git branch'
 alias gc='git commit'
 alias gca='git commit --amend'
