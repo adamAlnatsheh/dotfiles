@@ -11,7 +11,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
-Plug 'scrooloose/nerdtree'
 Plug 'udalov/kotlin-vim'
 
 call plug#end()
@@ -55,11 +54,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
-
-" nerdtree
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeMinimalUI=1
-let g:NERDTreeWinSize = 30
 
 
 " ----- indentation -----
@@ -115,7 +109,7 @@ let g:lightline = {
   \}
 
 
-" ----- ide -----
+" ----- formatting -----
 
 let g:neoformat_enabled_c=['clangformat']
 let g:neoformat_enabled_cpp=['clangformat']
