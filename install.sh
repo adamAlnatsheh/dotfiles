@@ -33,6 +33,8 @@ rm ripgrep_0.8.1_amd64.deb
 
 curl https://sh.rustup.rs -sSf | sh
 
-sudo apt install fonts-powerline
+curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.32.0/ktlint &&
+  chmod a+x ktlint &&
+  sudo mv ktlint /usr/local/bin/
 
 chsh -s $(which zsh)
