@@ -4,6 +4,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'cohama/lexima.vim'
 Plug 'euclio/vim-markdown-composer', { 'do': 'cargo build --release' }
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
@@ -38,6 +39,7 @@ set list lcs=trail:·
 set noswapfile
 set nobackup
 " set nowb
+set noshowmatch
 set scrolloff=8
 set showcmd
 set splitbelow
@@ -114,7 +116,6 @@ let g:lightline = {
 let g:neoformat_enabled_c=['clangformat']
 let g:neoformat_enabled_cpp=['clangformat']
 let g:neoformat_enabled_cmake=['cmakeformat']
-let g:neoformat_enabled_kotlint=['ktlint']
 let g:neoformat_enabled_python=['yapf']
 let g:neoformat_enabled_yaml=[]
 
