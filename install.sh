@@ -9,13 +9,13 @@ ln -nfs $HOME/dotfiles/zshrc $HOME/.zshrc
 ln -nfs $HOME/dotfiles/adam1.zsh-theme \
   $HOME/.oh-my-zsh/custom/themes/adam1.zsh-theme
 ln -nfs $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
-ln -fs $HOME/dotfiles/vimrc $HOME/.vimrc
-ln -fs $HOME/dotfiles/ideavimrc $HOME/.ideavimrc
 
 mkdir -p $HOME/.config/nvim
 ln -nfs $HOME/dotfiles/init.vim $HOME/.config/nvim/init.vim
 
 sudo apt install -y clang-format clang-tools
+
+ln -fs $HOME/dotfiles/clang-format $HOME/.clang-format
 
 curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
   > $HOME/Miniconda3-latest-Linux-x86_64.sh
@@ -33,7 +33,5 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
 sudo dpkg -i ripgrep_0.8.1_amd64.deb
 rm ripgrep_0.8.1_amd64.deb
-
-curl https://sh.rustup.rs -sSf | sh
 
 chsh -s $(which zsh)

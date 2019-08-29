@@ -5,14 +5,12 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'cohama/lexima.vim'
-Plug 'euclio/vim-markdown-composer', { 'do': 'cargo build --release' }
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
-Plug 'udalov/kotlin-vim'
 
 call plug#end()
 
@@ -68,7 +66,8 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-autocmd FileType c setlocal ts=8 sts=8 sw=8 nolist noexpandtab
+autocmd BufNewFile,Bufread *.h set ft=c
+autocmd FileType c,cpp setlocal ts=8 sts=8 sw=8 nolist noexpandtab
 autocmd FileType python setlocal tw=79 ts=4 sts=4 sw=4
 
 autocmd FileType dockerfile setlocal nolist noexpandtab
