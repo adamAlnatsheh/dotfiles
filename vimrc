@@ -2,7 +2,7 @@ if &compatible
   set nocompatible
 endif
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'cohama/lexima.vim'
 Plug 'itchyny/lightline.vim'
