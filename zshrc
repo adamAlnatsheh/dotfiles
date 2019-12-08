@@ -10,9 +10,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/home/adam/bin:$PATH"
 
-export PATH="/home/adam/miniconda3/bin:$PATH"
-
-export EDITOR=nvim
+export EDITOR=vim
 bindkey -v
 export KEYTIMEOUT=10
 
@@ -32,13 +30,11 @@ alias gl='git log'
 alias gm='git merge'
 alias gpl='git pull'
 alias gpr="git prune"
-alias gr='git rebase'
+alias greb='git rebase'
 alias gres='git reset'
 alias grev='git revert'
 alias gps='git push'
 alias gs='git status'
-
-alias sa='source activate'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
