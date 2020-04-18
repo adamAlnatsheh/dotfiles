@@ -47,6 +47,7 @@ set textwidth=80
 set title
 set undolevels=1000
 set visualbell
+set virtualedit=all
 
 " trim trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
