@@ -11,7 +11,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sbdchd/neoformat'
-Plug 'tomasr/molokai'
 
 call plug#end()
 
